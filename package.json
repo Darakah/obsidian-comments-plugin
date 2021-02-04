@@ -1,0 +1,13 @@
+{
+  "name": "Comments",
+  "version": "0.0.1",
+  "description": "Add, track and easily navigate between a note's Comments",
+  "main": "main.js",
+  "scripts": {
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+  }
+}
