@@ -65,7 +65,7 @@
 
   text-overflow: ellipsis;
   -webkit-transition: height 1s;
-  transition: /* height 1s,*/ opacity 1s, line-height 0.1s;
+  transition: opacity 1s, line-height 0.1s;
   padding: 5px 5px;
   background-color: var(--background-secondary);
   color: var(--text-normal);
@@ -109,7 +109,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   -webkit-transition: height 1s;
-  transition: /* height 1s,*/ opacity 1s, line-height 0.1s;
+  transition: opacity 1s, line-height 0.1s;
   cursor: pointer; 
 
   background-color:#FFDE5C;
