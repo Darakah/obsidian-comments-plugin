@@ -4,6 +4,10 @@ UPDATE README <<<!!!!
 
 ## Adding comments:
 
+If text is selected -> cmd/ctrl + P -> search for the command "add comment" -> enter
+
+or write the syntax :)
+
 ```
 <label class="ob-comment" title="..." style="..."> highlighted text <input type="checkbox"> <span> Comment </span>
 
