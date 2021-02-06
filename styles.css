@@ -1,6 +1,5 @@
 .ob-comment {
   position: relative;
-  display: relative;
   border-bottom: 1px dotted black;
   color: #8f0303;
   font-weight: bold;
@@ -28,8 +27,7 @@
   position: absolute;
   top: 20px;
   right: 20px;
-  
-  opacity: 0;
+
   box-shadow: 1px 1px 10px 5px var(--background-secondary);
   transition: opacity 1s;
 }
