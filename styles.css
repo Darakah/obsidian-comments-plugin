@@ -23,12 +23,13 @@
   text-align: left;
   border-radius: 6px;
   padding: 10px 10px;
-  position: absolute;
   z-index: 1;
   
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  
   opacity: 0;
-  right: 0;
-
   box-shadow: 1px 1px 10px 5px var(--background-secondary);
   transition: opacity 1s;
 }
