@@ -289,7 +289,7 @@ export default class MyPlugin extends Plugin {
 	addComment() {
 		const lines = this.getLines(this.getEditor());
 		if (!lines) return;
-		this.setLines(this.getEditor(), ['<label class="ob-comment" title="" style=""> ' + lines + ' <input type="checkbox"> <span style=""> Comment </span>']);
+		this.setLines(this.getEditor(), ['<label class="ob-comment" title="" style=""> ' + lines + ' <input type="checkbox"> <span style=""> Comment </span></label>']);
 	}
 
 	getEditor(): CodeMirror.Editor {
