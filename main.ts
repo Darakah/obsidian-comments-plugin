@@ -1,4 +1,4 @@
-import { ItemView, WorkspaceLeaf, TFile, App, Modal, Notice, Plugin, PluginSettingTab, Setting } from 'obsidian';
+import { ItemView, MarkdownView, WorkspaceLeaf, TFile, App, Modal, Notice, Plugin, PluginSettingTab, Setting } from 'obsidian';
 
 interface MyPluginSettings {
 	SHOW_RIBBON: boolean;
@@ -258,6 +258,12 @@ export default class MyPlugin extends Plugin {
             callback: () => (this as any).showPanel()
         });
 
+        this.addCommand({
+            id: "add-comment",
+            name: "Add Comment",
+            callback: () => (this as any).addComment()
+        });
+
         if(this.settings.SHOW_RIBBON){
         	this.addRibbonIcon('lines-of-text', "Show Comments Panel", (e) => (this as any).showPanel());
         }
@@ -278,6 +284,40 @@ export default class MyPlugin extends Plugin {
 
 	async saveSettings() {
 		await this.saveData(this.settings);
+	}
+
+	addComment() {
+		const lines = this.getLines(this.getEditor());
+		if (!lines) return;
+		this.setLines(this.getEditor(), ['<label class="ob-comment" title="" style=""> ' + lines + ' <input type="checkbox"> <span style=""> Comment </span>']);
+	}
+
+	getEditor(): CodeMirror.Editor {
+		let view = this.app.workspace.getActiveViewOfType(MarkdownView);
+		if (!view) return;
+
+		let cm = view.sourceMode.cmEditor;
+		return cm;
+	}
+
+	getLines(editor: CodeMirror.Editor): string[] {
+		if (!editor) return;
+		const selection = editor.getSelection();
+
+		if (selection != "") {
+			return selection.split("\n");
+		} else {
+			return editor.getValue().split("\n");
+		}
+	}
+
+	setLines(editor: CodeMirror.Editor, lines: string[]) {
+		const selection = editor.getSelection();
+		if (selection != "") {
+			editor.replaceSelection(lines.join("\n"));
+		} else {
+			editor.setValue(lines.join("\n"));
+		}
 	}
 }
 
