@@ -297,9 +297,9 @@ class SampleSettingTab extends PluginSettingTab {
 
 		new Setting(containerEl)
 			.setName('Default text color')
-			.setDesc("....")
+			.setDesc("Change from the style.css in the package folder")
 			.addText(text => text
-				.setPlaceholder(this.plugin.settings.DEFAULT_COLOR)
+				.setPlaceholder("....")
 				.setValue('')
 				.onChange(async (value) => {
 					this.plugin.settings.DEFAULT_COLOR = value;
