@@ -1,5 +1,8 @@
 # Obsidian Comments Plugin
 
+![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/Darakah/obsidian-comments-plugin/?style=for-the-badge)
+![GitHub all releases](https://img.shields.io/github/downloads/Darakah/obsidian-comments-plugin/total?style=for-the-badge)
+
 ## Pluging features
 
 **_Brief Description:_** PDF comments for obsidian notes
