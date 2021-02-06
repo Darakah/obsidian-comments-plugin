@@ -14,6 +14,7 @@
 ## Usage
 
 ### Insert a comment:
+----
 1. highlight the text that you want to add a comment to
 2. cmd/ctrl + p -> 'add comment' command -> enter
 3. the selected text will be replaced with the following:
@@ -23,10 +24,11 @@
 - binding the add comment to a hotkey (settings -> hotkeys) can make its usage faster e.g. cmd/ctrl + C
 
 ### Example
-
+----
 ![example](./example_1.png)
 
 ### Comment Properties
+----
 1. Title (optional): Text to be shown in the side panel above the comment. If a title is not specified a default place holder will be used as the title. Possible use cases:
   - to specify the line of text where this comment appears (if you have editor mode line number active) which can be useful in very large notes as currently side panel links don't cause the page to jump to it ;(
   - Q/A -> the question can be the title and clicking it in the sidebar will reveal the highlighted text (can be used to review key ideas of the note just from the side pannel)
@@ -37,8 +39,9 @@
 3. COMMENT section: as the comment is identified using ```<input type="checkbox"> <span>``` to identify the content, the actual COMMENT can include more divs / spans / HTML elements to further custimise it and it will be rendered properly in-line and in the side-panel.
 
 ### Comment Ribbon & Comment Panel:
-
+----
 #### Comment Ribbon
+
 A ribbon is added by default, when clicked it will open the side panel comment list. The ribbon can be hidden through the plugin settings tab (NEED TO UNLOAD / RELOAD THE PLUGIN AFTER THIS OPTION IS MODIFED FOR THE CHANGE TO TAKE PLACE!!!)
 
 #### Comment Panel
@@ -47,6 +50,7 @@ Can be opened in 2 ways:
 - Using a command `comment panel` 
 
 #### Default background color & Text color
+----
 As all in-line highlights / pop-ups are done using css, it can all be customized as one wishes by modifying the `style.css` in the `obsidian-comments-plugin` folder. 
 
 to modify the default background color / text color for highlighted text:
@@ -73,6 +77,7 @@ to modify the highlight color when it is hovered over:
 ```
 
 ### Settings:
+----
 ![settings](./settings.png)
 
 
