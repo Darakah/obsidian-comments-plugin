@@ -19,6 +19,8 @@
 
 ```<label class="ob-comment" title="..." style="..."> SELECTED TEXT <input type="checkbox"> <span> COMMENT </span></label>```
 
+- binding the add comment to a hotkey (settings -> hotkeys) can make its usage faster e.g. cmd/ctrl + C
+
 ## Example
 
 ![example](./example_1.png)
