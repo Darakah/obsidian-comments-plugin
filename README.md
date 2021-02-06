@@ -21,7 +21,7 @@
 
 ## Example
 
-![example](./example)
+![example](./example.png)
 
 Comment properties:
 > Comment text - text that will be shown when the highlighted text of this comment is clicked in preview mode. The text bubble will remain open until it is clicked again or the highlighted text that spawned it is clicked. 
