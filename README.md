@@ -7,7 +7,10 @@ UPDATE README <<<!!!!
 ```
 <label class="ob-comment" title="..." style="..."> highlighted text <input type="checkbox"> <span> Comment </span>
 
-<label class="ob-comment" title="This is the title to show in sidebar - it is hidden in the in-line page and it is optional!"> highlighted text - this text will be highlighted in preview mode and if clicked upon will cause a pop-up to show up containing the contents of the comment. <input type="checkbox"> <span> Comment pop-up  test that will appear when clicked! </span></label>
+<label class="ob-comment" title="This is the title to show in sidebar - it is hidden in the in-line 
+page and it is optional!"> highlighted text - this text will be highlighted in preview mode and 
+if clicked upon will cause a pop-up to show up containing the contents of the comment. <input type="checkbox"> <span> Comment 
+pop-up  test that will appear when clicked! </span></label>
 ```
 
 ## Example
