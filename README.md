@@ -19,6 +19,10 @@
 
 ```<label class="ob-comment" title="..." style="..."> SELECTED TEXT <input type="checkbox"> <span> COMMENT </span></label>```
 
+## Example
+
+![example](./example)
+
 Comment properties:
 > Comment text - text that will be shown when the highlighted text of this comment is clicked in preview mode. The text bubble will remain open until it is clicked again or the highlighted text that spawned it is clicked. 
 > Comment buble style - the style can be 
@@ -27,9 +31,6 @@ The following can be specified for each comment:
  
   2. Comment title
 
-## Example
-
-![example_1](./example.png)
 
 ## To-Do:
 - Find a way to make links work from sidepanel to jump to section of origin
