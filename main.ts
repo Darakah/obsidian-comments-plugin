@@ -303,12 +303,7 @@ export default class MyPlugin extends Plugin {
 	getLines(editor: CodeMirror.Editor): string[] {
 		if (!editor) return;
 		const selection = editor.getSelection();
-
-		if (selection != "") {
-			return selection.split("\n");
-		} else {
-			return editor.getValue().split("\n");
-		}
+		return [selection];
 	}
 
 	setLines(editor: CodeMirror.Editor, lines: string[]) {
