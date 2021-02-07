@@ -6,7 +6,7 @@
 **_Brief Description:_** PDF comments for obsidian notes
 
 **_Detailed Description:_**
-1. Commend that adds a comment syntax for the selected text (in edit mode)
+1. Command that adds a comment syntax for the selected text (in edit mode)
 2. Selected text will be highlighted with a certain text color & background color in preview mode
 3. Clicking the highlighted text in preview mode will reveal a pop-up containing the comment related to it
 4. A side panel that lists all comments for the current active note
