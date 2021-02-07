@@ -1,6 +1,6 @@
 {
   "name": "Comments",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Add, track and easily navigate between a note's Comments",
   "main": "main.js",
   "scripts": {
