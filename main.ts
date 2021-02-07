@@ -1,60 +1,37 @@
-import { ItemView, MarkdownView, WorkspaceLeaf, TFile, App, Modal, Notice, Plugin, PluginSettingTab, Setting } from 'obsidian';
+import { ItemView, MarkdownView, WorkspaceLeaf, TFile, App, View, Notice, Plugin, PluginSettingTab, Setting} from 'obsidian';
 
-interface MyPluginSettings {
+interface CommentsSettings {
 	SHOW_RIBBON: boolean;
 	DEFAULT_COLOR: string;
 	DEFAULT_BACKGROUND_COLOR: string;
 }
 
-const DEFAULT_SETTINGS: MyPluginSettings = {
+const DEFAULT_SETTINGS: CommentsSettings = {
 	SHOW_RIBBON: true,
 	DEFAULT_COLOR: '#b30202',
 	DEFAULT_BACKGROUND_COLOR: '#FFDE5C'
 }
 
-// Create element of specified type
-function element(name: string) {
-    return document.createElement(name);
-}
-
-// Append node to target
-function append(target: any, node: any) {
-    target.appendChild(node);
-}
-
-// Set node attribute to value
-function attr(node: any, attribute: string, value: string) {
-    if (value == null)
-        node.removeAttribute(attribute);
-    else if (node.getAttribute(attribute) !== value)
-        node.setAttribute(attribute, value);
-}
-
 // Delay passed function for specified timeout
-function debounce(func: any, wait?: any, immediate?: any) {
-  var timeout: number;
+function debounce(func: any, wait?: number, immediate?: boolean) {
+  let timeout: number;
 
   return function executedFunction() {
-    var context = this;
-    var args = arguments;
+    let context = this;
+    let args = arguments;
         
-    var later = function() {
+    let later = function() {
       timeout = null;
       if (!immediate) func.apply(context, args);
     };
-
-    var callNow = immediate && !timeout;
-    
+    let callNow = immediate && !timeout;
     clearTimeout(timeout);
-
     timeout = +setTimeout(later, wait);
-    
     if (callNow) func.apply(context, args);
   };
 };
 
 const VIEW_TYPE_OB_COMMENTS = 'ob_comments';
-
 class CommentsView extends ItemView {
 
 	constructor(leaf: WorkspaceLeaf) {
@@ -89,183 +66,108 @@ class CommentsView extends ItemView {
     }
 
     redraw_debounced = debounce(function() {
-    	var containerEl = this.containerEl;
-        containerEl.empty();
-        containerEl.setAttribute('class', 'comment-panel')
-
-        let i, z, w, x, y, j;
-        // Condition if current leaf is present
-        if(this.app.workspace.getActiveFile() != null)
-        {
-        	var text = (this.app.workspace.getActiveFile() as any).cachedData;
-        	// Convert into HTML element 
-        	var tmp = element("div")
-        	tmp.innerHTML = text;
-        	// Use HTML parser to find the desired elements
-        	// Get all .ob-comment elements
-        	var comment_list = tmp.querySelectorAll("label[class='ob-comment']");
-
-        	var El = element("h3");
-        	attr(El, 'class', 'comment-count');
-        	append(containerEl, El);
-        	El.setText('Comments: ' + comment_list.length);
-
-	        for (i = 0; i < comment_list.length; i++) {
-	            w = element("div");
-	            attr(w, 'class', 'comment-pannel-bubble')
-
-	            x = element("label");
-	            y = element("p")
-	            attr(y, 'class', 'comment-pannel-p1')
-	            // Check if user specified a title for this comment
-	            if ((comment_list[i] as any).title == ""){
-	                // if no title specified, use the line number
-	                y.setText('--')
-	            } else {
-	                // Use the given title
-	                y.setText((comment_list[i] as any).title)}
-	            append(x, y)
-
-	            j = element("input")
-	            attr(j, 'type', 'checkbox')
-	            attr(j, 'style', 'display:none;')
-	            append(x, j);
-
-	            y = element("p")
-	            attr(y, 'class', 'comment-pannel-p2')
-	            y.setText(comment_list[i].innerHTML.substring(0, comment_list[i].innerHTML.length  - comment_list[i].querySelector('input[type=checkbox]+span').outerHTML.length - comment_list[i].querySelector('input[type=checkbox]').outerHTML.length - 1))
-	            append(x, y)
-	            append(w, x)
-
-
-	            x = element("label");
-	            j = element("input")
-	            attr(j, 'type', 'checkbox')
-	            attr(j, 'style', 'display:none;')
-	            append(x, j);
-	            y = element("p")
-	            attr(y, 'class', 'comment-pannel-p3')
-	            // Check if user specified additional style for this note
-	            if ((comment_list[i] as any).style.cssText == ""){
-	                // if no style was assigned, use default
-	                y.innerHTML = comment_list[i].querySelector('input[type=checkbox]+span').outerHTML
-	            } else {
-	                // Add the new style
-	                y.innerHTML = comment_list[i].querySelector('input[type=checkbox]+span').outerHTML;
-	                attr(y, 'style', (comment_list[i] as any).style.cssText)
-	            }
-	            append(x, y)
-
-	            append(w, x)
-	            append(containerEl, w);
-
-	        	}
-	        }
-        
+		this.redraw();        
     }, 1000);
 
-    redraw() {
-        var containerEl = this.containerEl;
-        containerEl.empty();
-        containerEl.setAttribute('class', 'comment-panel')
-
-        let i, z, w, x, y, j;
+    async redraw() {
+		let active_leaf = this.app.workspace.getActiveFile();
+        this.containerEl.empty();
+        this.containerEl.setAttribute('class', 'comment-panel')
+        
         // Condition if current leaf is present
-        if(this.app.workspace.getActiveFile() != null)
-        {
-        	var text = (this.app.workspace.getActiveFile() as any).cachedData;
+        if(active_leaf){	
+			let page_content = await this.app.vault.read(active_leaf); 
         	// Convert into HTML element 
-        	var tmp = element("div")
-        	tmp.innerHTML = text;
+        	let page_html = document.createElement('Div')
+        	page_html.innerHTML = page_content;
         	// Use HTML parser to find the desired elements
         	// Get all .ob-comment elements
-        	var comment_list = tmp.querySelectorAll("label[class='ob-comment']");
+        	let comment_list = page_html.querySelectorAll<HTMLElement>("label[class='ob-comment']");
 
-        	var El = element("h3");
-        	attr(El, 'class', 'comment-count');
-        	append(containerEl, El);
+        	let El = document.createElement("h3");
+			El.setAttribute('class', 'comment-count')
+			this.containerEl.appendChild(El);
         	El.setText('Comments: ' + comment_list.length);
 
-	        for (i = 0; i < comment_list.length; i++) {
-	            w = element("div");
-	            attr(w, 'class', 'comment-pannel-bubble')
+	        for (let i = 0; i < comment_list.length; i++) {
+	            let div = document.createElement('Div');
+				div.setAttribute('class', 'comment-pannel-bubble')
 
-	            x = element("label");
-	            y = element("p")
-	            attr(y, 'class', 'comment-pannel-p1')
-	            // Check if user specified a title for this comment
-	            if ((comment_list[i] as any).title == ""){
+	            let labelEl = document.createElement("label");
+	            let pEl = document.createElement("p");
+				pEl.setAttribute('class', 'comment-pannel-p1')
+
+				// Check if user specified a title for this comment
+	            if (!comment_list[i].title || comment_list[i].title === ""){
 	                // if no title specified, use the line number
-	                y.setText('--')
+	                pEl.setText('--')
 	            } else {
 	                // Use the given title
-	                y.setText((comment_list[i] as any).title)}
-	            append(x, y)
+	                pEl.setText(comment_list[i].title)
+				}
+				labelEl.appendChild(pEl)
 
-	            j = element("input")
-	            attr(j, 'type', 'checkbox')
-	            attr(j, 'style', 'display:none;')
-	            append(x, j);
+	            let inputEl = document.createElement("input");
+				inputEl.setAttribute('type', 'checkbox')
+				inputEl.setAttribute('style', 'display:none;')
+				labelEl.appendChild(inputEl)
 
-	            y = element("p")
-	            attr(y, 'class', 'comment-pannel-p2')
-	            y.setText(comment_list[i].innerHTML.substring(0, comment_list[i].innerHTML.length  - comment_list[i].querySelector('input[type=checkbox]+span').outerHTML.length - comment_list[i].querySelector('input[type=checkbox]').outerHTML.length - 1))
-	            append(x, y)
-	            append(w, x)
+	            pEl = document.createElement("p");
+				pEl.setAttribute('class', 'comment-pannel-p2')
+	            pEl.setText(comment_list[i].innerHTML.substring(0, comment_list[i].innerHTML.length  - comment_list[i].querySelector('input[type=checkbox]+span').outerHTML.length - comment_list[i].querySelector('input[type=checkbox]').outerHTML.length - 1))
+	            labelEl.appendChild(pEl)
+				div.appendChild(labelEl)
 
 
-	            x = element("label");
-	            j = element("input")
-	            attr(j, 'type', 'checkbox')
-	            attr(j, 'style', 'display:none;')
-	            append(x, j);
-	            y = element("p")
-	            attr(y, 'class', 'comment-pannel-p3')
+	            labelEl = document.createElement("label");
+	            inputEl = document.createElement("input");
+				inputEl.setAttribute('type', 'checkbox')
+				inputEl.setAttribute('style', 'display:none;')
+				labelEl.appendChild(inputEl)
+	            pEl = document.createElement("p");
+				pEl.setAttribute('class', 'comment-pannel-p3')
 	            // Check if user specified additional style for this note
-	            if ((comment_list[i] as any).style.cssText == ""){
+	            if (!comment_list[i].style.cssText){
 	                // if no style was assigned, use default
-	                y.innerHTML = comment_list[i].querySelector('input[type=checkbox]+span').outerHTML
+	                pEl.innerHTML = comment_list[i].querySelector('input[type=checkbox]+span').outerHTML
 	            } else {
 	                // Add the new style
-	                y.innerHTML = comment_list[i].querySelector('input[type=checkbox]+span').outerHTML;
-	                attr(y, 'style', (comment_list[i] as any).style.cssText)
+	                pEl.innerHTML = comment_list[i].querySelector('input[type=checkbox]+span').outerHTML;
+					pEl.setAttribute('style', comment_list[i].style.cssText)
 	            }
-	            append(x, y)
-
-	            append(w, x)
-	            append(containerEl, w);
-
+	            labelEl.appendChild(pEl)
+	            div.appendChild(labelEl)
+				this.containerEl.appendChild(div)
 	        	}
 	        }
     }
 }
 
-export default class MyPlugin extends Plugin {
-	settings: MyPluginSettings;
+export default class CommentsPlugin extends Plugin {
+	settings: CommentsSettings;
+	view: View;
 
 	async onload() {
-		var _this = this;
         // Load message
         await this.loadSettings();
         console.log('Loaded Comments Plugin');
+        this.addSettingTab(new CommentsSettingTab(this.app, this));
 
-        this.addSettingTab(new SampleSettingTab(this.app, this));
-
-        this.registerView(VIEW_TYPE_OB_COMMENTS, (leaf) => (this as any).view = new CommentsView(leaf));
+        this.registerView(VIEW_TYPE_OB_COMMENTS, (leaf) => this.view = new CommentsView(leaf));
         this.addCommand({
             id: "show-comments-panel",
             name: "Open Comments Panel",
-            callback: () => (this as any).showPanel()
+            callback: () => this.showPanel()
         });
 
         this.addCommand({
             id: "add-comment",
             name: "Add Comment",
-            callback: () => (this as any).addComment()
+            callback: () => this.addComment()
         });
 
         if(this.settings.SHOW_RIBBON){
-        	this.addRibbonIcon('lines-of-text', "Show Comments Panel", (e) => (this as any).showPanel());
+        	this.addRibbonIcon('lines-of-text', "Show Comments Panel", (e) => this.showPanel());
         }
 	}
 
@@ -287,9 +189,10 @@ export default class MyPlugin extends Plugin {
 	}
 
 	addComment() {
-		const lines = this.getLines(this.getEditor());
+		let editor = this.getEditor();
+		const lines = this.getLines(editor);
 		if (!lines) return;
-		this.setLines(this.getEditor(), ['<label class="ob-comment" title="" style=""> ' + lines + ' <input type="checkbox"> <span style=""> Comment </span></label>']);
+		this.setLines(editor, ['<label class="ob-comment" title="" style=""> ' + lines + ' <input type="checkbox"> <span style=""> Comment </span></label>']);
 	}
 
 	getEditor(): CodeMirror.Editor {
@@ -316,10 +219,10 @@ export default class MyPlugin extends Plugin {
 	}
 }
 
-class SampleSettingTab extends PluginSettingTab {
-	plugin: MyPlugin;
+class CommentsSettingTab extends PluginSettingTab {
+	plugin: CommentsPlugin;
 
-	constructor(app: App, plugin: MyPlugin) {
+	constructor(app: App, plugin: CommentsPlugin) {
 		super(app, plugin);
 		this.plugin = plugin;
 	}
