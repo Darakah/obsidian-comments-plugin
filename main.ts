@@ -129,10 +129,10 @@ class CommentsView extends ItemView {
 				// Check if user specified additional style for this note
 				if (!comment_list[i].style.cssText){
 					// if no style was assigned, use default
-					pEl.innerHTML = comment_list[i].querySelector('input[type=checkbox]+span').outerHTML
+					pEl.setText(comment_list[i].querySelector('input[type=checkbox]+span').innerHTML)
 				} else {
 					// Add the new style
-					pEl.innerHTML = comment_list[i].querySelector('input[type=checkbox]+span').outerHTML;
+					pEl.setText(comment_list[i].querySelector('input[type=checkbox]+span').innerHTML)
 					pEl.setAttribute('style', comment_list[i].style.cssText)
 				}
 				labelEl.appendChild(pEl)
