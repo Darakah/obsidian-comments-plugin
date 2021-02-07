@@ -25,7 +25,7 @@
 
 ### Example
 ----
-![example](./images/example_1.png)
+![example](https://raw.githubusercontent.com/Darakah/obsidian-comments-plugin/main/example_1.png)
 
 ### Comment Properties
 ----
@@ -78,7 +78,7 @@ to modify the highlight color when it is hovered over:
 
 ### Settings:
 ----
-![settings](./settings.png)
+![settings](https://raw.githubusercontent.com/Darakah/obsidian-comments-plugin/main/settings.png)
 
 
 ## To-Do:
