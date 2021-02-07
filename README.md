@@ -25,7 +25,7 @@
 
 ### Example
 ----
-![example](./example_1.png)
+![example](./images/example_1.png)
 
 ### Comment Properties
 ----
