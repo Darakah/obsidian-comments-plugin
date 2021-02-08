@@ -25,7 +25,7 @@
 
 ### Example
 ----
-![example](https://raw.githubusercontent.com/Darakah/obsidian-comments-plugin/main/example_1.png)
+![example](https://raw.githubusercontent.com/Darakah/obsidian-comments-plugin/main/images/example_1.png)
 
 ### Comment Properties
 ----
