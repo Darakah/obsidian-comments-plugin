@@ -15,7 +15,7 @@
 
 ### Insert a comment:
 ----
-1. highlight the text that you want to add a comment to
+1. Select the text that you want to add a comment to
 2. cmd/ctrl + p -> 'add comment' command -> enter
 3. the selected text will be replaced with the following:
 
