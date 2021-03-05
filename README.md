@@ -87,7 +87,6 @@ to modify the highlight color when it is hovered over:
 ![settings](https://raw.githubusercontent.com/Darakah/obsidian-comments-plugin/main/settings.png)
 
 ## Release Notes:
-----
 
 ### v0.2.0
 
