@@ -47,7 +47,7 @@ Can be opened in 2 ways:
 - Clicking the comment ribbon
 - Using a command `comment panel` 
 
-#### Default background color & Text color
+### Default background color & Text color
 ----
 As all in-line highlights / pop-ups are done using css, it can all be customized as one wishes by modifying the `style.css` in the `obsidian-comments-plugin` folder. 
 to modify the default background color / text color for highlighted text:
