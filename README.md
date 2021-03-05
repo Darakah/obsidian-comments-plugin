@@ -1,22 +1,34 @@
+
+# Obsidian Comments Plugin
+![GitHub release)](https://img.shields.io/github/v/release/Darakah/obsidian-comments-plugin)
+![GitHub all releases](https://img.shields.io/github/downloads/Darakah/obsidian-comments-plugin/total)
+
 **_Brief Description:_** PDF comments for obsidian notes
 **_Detailed Description:_**
 1. Command that adds a comment syntax for the selected text (in edit mode)
 2. Selected text will be highlighted with a certain text color & background color in preview mode
 3. Clicking the highlighted text in preview mode will reveal a pop-up containing the comment related to it
 4. A side panel that lists all comments for the current active note
+
 ## Usage
 ### Insert a comment:
 ----
+
 1. Select the text that you want to add a comment to
 2. cmd/ctrl + p -> 'add comment' command -> enter
 3. the selected text will be replaced with the following:
 ```<label class="ob-comment" title="..." style="..."> SELECTED TEXT <input type="checkbox"> <span> COMMENT </span></label>```
 - binding the add comment to a hotkey (settings -> hotkeys) can make its usage faster e.g. cmd/ctrl + C
+
 ### Example
 ----
+
 ![example](https://raw.githubusercontent.com/Darakah/obsidian-comments-plugin/main/images/example_2.png)
+
 **----> Old View but still valid annotations:**
+
 ![example](https://raw.githubusercontent.com/Darakah/obsidian-comments-plugin/main/images/example_1.png)
+
 ### Comment Properties
 ----
 1. Title (optional): Text to be shown in the side panel above the comment. If a title is not specified a default place holder will be used as the title. Possible use cases:
