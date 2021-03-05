@@ -25,6 +25,12 @@
 
 ### Example
 ----
+![example](https://raw.githubusercontent.com/Darakah/obsidian-comments-plugin/main/images/example_2.png)
+
+
+**----> Old View but still valid annotations:**
+
+
 ![example](https://raw.githubusercontent.com/Darakah/obsidian-comments-plugin/main/images/example_1.png)
 
 ### Comment Properties
@@ -80,10 +86,16 @@ to modify the highlight color when it is hovered over:
 ----
 ![settings](https://raw.githubusercontent.com/Darakah/obsidian-comments-plugin/main/settings.png)
 
+## Release Notes:
+----
+
+### v0.2.0
+
+- Sticky bookmark-like display of comment pop-ups
 
 ## To-Do:
-- Find a way to make links work from sidepanel to jump to section of origin
-- Sticky better display of comment pop-ups
+- [x] Sticky better display of comment pop-ups
+- [ ] Find a way to make links work from sidepanel to jump to section of origin
 
 ## Credits:
-Thanks to the obsidian discord community that helped me put this together, especially the developers that put up with my noob questions.
+Thanks to the obsidian discord community that helped me put this together, especially the developers that put up with my questions.
