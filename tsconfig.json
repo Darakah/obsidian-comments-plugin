@@ -9,6 +9,15 @@
     "noImplicitAny": true,
     "moduleResolution": "node",
     "importHelpers": true,
+    "types": [
+      "node",
+      "svelte",
+    ],
+    "paths": {
+      "src": [
+        "src/*"
+      ]
+    },
     "lib": [
       "dom",
       "es5",
@@ -17,6 +26,10 @@
     ]
   },
   "include": [
-    "**/*.ts"
-  ]
+    "**/*.ts",
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules/*"
+  ],
 }
