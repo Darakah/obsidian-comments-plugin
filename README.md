@@ -4,6 +4,7 @@
 ![GitHub all releases](https://img.shields.io/github/downloads/Darakah/obsidian-comments-plugin/total)
 
 **_Brief Description:_** PDF comments for obsidian notes
+
 **_Detailed Description:_**
 1. Command that adds a comment syntax for the selected text (in edit mode)
 2. Selected text will be highlighted with a certain text color & background color in preview mode
