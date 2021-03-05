@@ -88,6 +88,10 @@ to modify the highlight color when it is hovered over:
 - [x] Sticky better display of comment pop-ups
 - [ ] Find a way to make links work from sidepanel to jump to section of origin
 
+
+## Support
+
+[<img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="BuyMeACoffee" width="100">](https://www.buymeacoffee.com/darakah)
+
 ## Credits:
-Thanks to the obsidian discord community that helped me put this together, especially the developers that put up with my noob questions.
 Thanks to the obsidian discord community that helped me put this together, especially the developers that put up with my questions.
